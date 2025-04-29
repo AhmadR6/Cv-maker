@@ -2,6 +2,7 @@ import React from "react";
 import { v4 as uuidv4 } from "uuid";
 import CvPreview from "./Componets/CvPreview";
 import FormComponets from "./Componets/FormComponets";
+import avatar from "./assets/avatarPlaceholder.png";
 import { EducationForm, SkillForm, ExperienceForm } from "./forms";
 import "./App.css";
 import PersonalDetailForm from "./Componets/PersonalDetailForm";
@@ -37,6 +38,8 @@ export default function App() {
       skillName: "teamWork",
     },
   ]);
+  const [image, setImage] = React.useState(avatar);
+  const [preview, setPreview] = React.useState(null);
   const educationistElements = educationFormData.map((items) => {
     return (
       <div className="education-list" key={uuidv4()}>
@@ -114,12 +117,25 @@ export default function App() {
       ];
     });
   }
-
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const imgsrc = URL.createObjectURL(file);
+      setImage(imgsrc);
+      setPreview(URL.createObjectURL(file)); // show preview
+    }
+  };
+  console.log(image);
   return (
     <>
       <main>
         <section className="form-section">
           <PersonalDetailForm handelFormChange={handelFormChange} />
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleImageChange}
+          ></input>
           <FormComponets
             form={EducationForm}
             handleFormSubmition={handleEducationForm}
@@ -139,8 +155,17 @@ export default function App() {
             name="Experience"
           />
         </section>
-        <CvPreview data={formData} educationForm={educationFormData} />
+
+        <CvPreview
+          data={formData}
+          educationForm={educationFormData}
+          experienceForm={experienceFormData}
+          skillForm={skillFormData}
+          image={image}
+        />
       </main>
+
+      <button onClick={() => window.print()}>Print / Save as PDF</button>
     </>
   );
 }
