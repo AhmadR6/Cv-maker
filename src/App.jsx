@@ -2,7 +2,7 @@ import React from "react";
 import { v4 as uuidv4 } from "uuid";
 import CvPreview from "./Componets/CvPreview";
 import FormComponets from "./Componets/FormComponets";
-import { EducationForm, SkillForm } from "./forms";
+import { EducationForm, SkillForm, ExperienceForm } from "./forms";
 import "./App.css";
 import PersonalDetailForm from "./Componets/PersonalDetailForm";
 export default function App() {
@@ -22,6 +22,16 @@ export default function App() {
       endDate: "2-6-2025",
     },
   ]);
+  const [experienceFormData, setExperienceFormData] = React.useState([
+    {
+      companyName: "ABC Company",
+      positionTitle: "Software Engineer",
+      startDate: "2-6-2021",
+      endDate: "2-6-2025",
+      location: "London, UK",
+      description: "Worked on various projects",
+    },
+  ]);
   const [skillFormData, setSkillFormData] = React.useState([
     {
       skillName: "teamWork",
@@ -31,6 +41,13 @@ export default function App() {
     return (
       <div className="education-list" key={uuidv4()}>
         <h3>{items.schoolName}</h3>
+      </div>
+    );
+  });
+  const experienceListElements = experienceFormData.map((items) => {
+    return (
+      <div className="education-list" key={uuidv4()}>
+        <h3>{items.companyName}</h3>
       </div>
     );
   });
@@ -73,7 +90,31 @@ export default function App() {
       ];
     });
   }
-  console.log(skillFormData);
+  function handleExperienceForm(e) {
+    e.preventDefault();
+    const {
+      companyName,
+      positionTitle,
+      startDate,
+      endDate,
+      location,
+      description,
+    } = e.target;
+    setExperienceFormData((prev) => {
+      return [
+        ...prev,
+        {
+          companyName: companyName.value,
+          positionTitle: positionTitle.value,
+          startDate: startDate.value,
+          endDate: endDate.value,
+          location: location.value,
+          description: description.value,
+        },
+      ];
+    });
+  }
+
   return (
     <>
       <main>
@@ -90,6 +131,12 @@ export default function App() {
             handleFormSubmition={handleSkillForm}
             listItems={skillListElements}
             name="Skills"
+          />
+          <FormComponets
+            form={ExperienceForm}
+            handleFormSubmition={handleExperienceForm}
+            listItems={experienceListElements}
+            name="Experience"
           />
         </section>
         <CvPreview data={formData} educationForm={educationFormData} />
