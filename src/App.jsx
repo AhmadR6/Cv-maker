@@ -1,6 +1,8 @@
 import React from "react";
+import { v4 as uuidv4 } from "uuid";
 import CvPreview from "./Componets/CvPreview";
 import FormComponets from "./Componets/FormComponets";
+import { EducationForm, SkillForm } from "./forms";
 import "./App.css";
 import PersonalDetailForm from "./Componets/PersonalDetailForm";
 export default function App() {
@@ -12,7 +14,7 @@ export default function App() {
     address: "London, UK",
   });
 
-  const [educationForm, setEducationForm] = React.useState([
+  const [educationFormData, setEducationFormData] = React.useState([
     {
       schoolName: "Goverment College university of Faisalabad",
       degree: "BS(CS)",
@@ -20,7 +22,25 @@ export default function App() {
       endDate: "2-6-2025",
     },
   ]);
-
+  const [skillFormData, setSkillFormData] = React.useState([
+    {
+      skillName: "teamWork",
+    },
+  ]);
+  const educationistElements = educationFormData.map((items) => {
+    return (
+      <div className="education-list" key={uuidv4()}>
+        <h3>{items.schoolName}</h3>
+      </div>
+    );
+  });
+  const skillListElements = skillFormData.map((items) => {
+    return (
+      <div className="education-list" key={uuidv4()}>
+        <h3>{items.skillName}</h3>
+      </div>
+    );
+  });
   function handelFormChange(e) {
     const { name, value } = e.target;
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
@@ -29,7 +49,7 @@ export default function App() {
     e.preventDefault();
     const { schoolName, degree, startDate, endDate } = e.target;
 
-    setEducationForm((prev) => {
+    setEducationFormData((prev) => {
       return [
         ...prev,
         {
@@ -40,28 +60,39 @@ export default function App() {
         },
       ];
     });
-    // setIsFormShown((prevState) => !prevState);
-    // setIsEducationListShown((prevState) => !prevState);
   }
-
-  console.log(educationForm);
+  function handleSkillForm(e) {
+    e.preventDefault();
+    const { skillName } = e.target;
+    setSkillFormData((prev) => {
+      return [
+        ...prev,
+        {
+          skillName: skillName.value,
+        },
+      ];
+    });
+  }
+  console.log(skillFormData);
   return (
     <>
       <main>
         <section className="form-section">
           <PersonalDetailForm handelFormChange={handelFormChange} />
           <FormComponets
-            educationForm={educationForm}
-            handleEducationForm={handleEducationForm}
+            form={EducationForm}
+            handleFormSubmition={handleEducationForm}
             name="Education"
+            listItems={educationistElements}
           />
           <FormComponets
-            educationForm={educationForm}
-            handleEducationForm={handleEducationForm}
+            form={SkillForm}
+            handleFormSubmition={handleSkillForm}
+            listItems={skillListElements}
             name="Skills"
           />
         </section>
-        <CvPreview data={formData} educationForm={educationForm} />
+        <CvPreview data={formData} educationForm={educationFormData} />
       </main>
     </>
   );
