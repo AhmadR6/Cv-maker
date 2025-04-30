@@ -128,7 +128,7 @@ export default function App() {
   console.log(image);
   return (
     <>
-      <main>
+      <main className="app">
         <section className="form-section">
           <PersonalDetailForm handelFormChange={handelFormChange} />
           <input
@@ -154,6 +154,7 @@ export default function App() {
             listItems={experienceListElements}
             name="Experience"
           />
+          <button onClick={() => window.print()}>Print / Save as PDF</button>
         </section>
 
         <CvPreview
@@ -164,8 +165,6 @@ export default function App() {
           image={image}
         />
       </main>
-
-      <button onClick={() => window.print()}>Print / Save as PDF</button>
     </>
   );
 }
