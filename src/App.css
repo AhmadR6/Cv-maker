@@ -1,89 +1,112 @@
-/* ===== Main Layout ===== */
-main {
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.app {
   display: flex;
-  width: 100vw;
-  height: 100vh;
+  margin: auto;
+  max-width: 1500px;
+  padding: 32px 24px;
 }
 
 /* ===== Sidebar Form Section ===== */
 section.form-section {
   background-color: white;
-  width: 45%;
-  height: 100%;
-  padding: 2rem;
-  /* overflow-y: auto; */
+  max-width: 500px;
+  flex: 1;
+  margin-left: 30px;
 }
 
 /* ===== Live Preview Section ===== */
 section.live-preview-section {
-  width: 210mm;
-  height: 297mm;
-  background-color: white;
+  width: 21cm;
+  height: 24cm;
+  margin-left: 30px;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
-  position: absolute;
-  top: 5vh;
-  left: 46vw;
-
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: auto 1fr;
-  overflow: hidden;
 }
 
 /* ===== Header (Name & Title) ===== */
 section.live-preview-section > header {
   background-color: #323b4c;
-  grid-column: 1 / -1;
-  grid-row: 1;
+  padding: 2rem;
+  color: white;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 2rem;
-  color: white;
+  align-items: center;
 }
 
 section.live-preview-section > header h1 {
   font-size: 2rem;
   margin-bottom: 0.5rem;
-  margin-left: 20rem;
+  margin-left: 10rem;
 }
 
 section.live-preview-section > header p {
   font-size: 1.1rem;
   font-weight: 300;
   color: #dcdcdc;
-  margin-left: 20rem;
+  margin-left: 10rem;
 }
 
 /* ===== Contact Info Section ===== */
-.contact-info {
-  background-color: #f5f5f5;
-  grid-column: 1 / 3;
-  grid-row: 2/-1;
-  padding: 2rem;
+section.live-preview-section > main {
+  width: 100%;
+  height: 100%;
   display: flex;
-  flex-direction: column;
+}
+.contact-info {
+  background-color: #e4e4e4;
+  padding: 1em;
+  flex: 0;
+  text-wrap: wrap;
+}
+
+.contact-info-container ul {
+  line-height: 1.5;
+  list-style: none;
+}
+.heading {
+  color: #323b4c;
+  padding: 5px;
+  border-bottom: 2px solid #323b4c;
+  margin-bottom: 5px;
+}
+.contact-info-container ul li {
+  white-space: normal;
+  word-wrap: break-word;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 /* ===== Main Content Area (Experience / Education) ===== */
 .academic-experience-section {
-  grid-column: 4/ -1;
-  grid-row: 2;
   padding: 2rem;
-  background-color: #ffffff;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
+  background-color: #fdfdfd;
+  flex: 2;
 }
-
+.education-list,
+.experience-list {
+  display: flex;
+  justify-content: space-between;
+  background-color: #fdfdfd;
+  line-height: 1.5;
+  margin-bottom: 40px;
+}
+.date {
+  display: flex;
+  gap: 5px;
+}
+.date p,
+span {
+  font-size: 0.8rem;
+  color: #323b4c;
+  font-weight: 500;
+  text-align: center;
+}
 /* ===== Profile Image ===== */
-.img-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 2rem;
-}
 
 .img-container > img {
   object-fit: cover;
@@ -106,14 +129,12 @@ section.live-preview-section > header p {
 
 /* ===== Form Elements ===== */
 .form {
-  position: relative;
-  top: 50px;
-  left: 30px;
   width: 100%;
   height: auto;
   background-color: #f5f5f5;
   padding: 20px;
   border-radius: 5px;
+  margin-bottom: 20px;
 }
 .form-group {
   display: flex;
@@ -125,7 +146,31 @@ section.live-preview-section > header p {
   border: none;
   margin: 5px;
 }
-
+.formHeading {
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+}
+.formHeading > button {
+  border: none;
+  cursor: pointer;
+}
+.education-list {
+  background-color: #f5f5f5;
+  padding: 20px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+.add-education {
+  border: none;
+  cursor: pointer;
+  background-color: #f5f5f5;
+  color: #323b4c;
+  font-size: 1.2em;
+}
+.toggle-icon {
+  font-size: 2em;
+}
 /* ===== Responsive ===== */
 @media (max-width: 768px) {
   section.live-preview-section {
@@ -144,5 +189,24 @@ section.live-preview-section > header p {
   .img-container > img {
     width: 100px;
     height: 100px;
+  }
+}
+/* print.css */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  .live-preview-section,
+  .live-preview-section * {
+    visibility: visible;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .live-preview-section {
+    position: absolute;
+    left: 0;
+    top: 0;
   }
 }
