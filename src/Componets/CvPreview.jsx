@@ -1,4 +1,3 @@
-import { v4 as uuidv4 } from "uuid";
 export default function CvPreview(props) {
   return (
     <section className="live-preview-section">
@@ -22,51 +21,57 @@ export default function CvPreview(props) {
           <div className="skills-container">
             <h2 className="heading">SKILLS</h2>
             <ul>
-              {props.skillForm.map((skill) => {
-                return <li key={uuidv4()}>{skill.skillName}</li>;
-              })}
+              {props.skillForm
+                .filter((skill) => skill.skillName !== "")
+                .map((skill) => {
+                  return <li key={skill.id}>{skill.skillName}</li>;
+                })}
             </ul>
           </div>
         </section>
         <section className="academic-experience-section">
           <h2 className="heading">EDUCATION</h2>
           <div>
-            {props.educationForm.map((education) => {
-              return (
-                <div className="education-list" key={uuidv4()}>
-                  <div>
-                    <h3>{education.degree}</h3>
-                    <p>{education.schoolName}</p>
+            {props.educationForm
+              .filter((education) => education.schoolName !== "")
+              .map((education) => {
+                return (
+                  <div className="education-list" key={education.id}>
+                    <div>
+                      <h3>{education.degree}</h3>
+                      <p>{education.schoolName}</p>
+                    </div>
+                    <div className="date">
+                      <p>{education.startDate}</p>
+                      <span>-</span>
+                      <p>{education.endDate}</p>
+                    </div>
                   </div>
-                  <div className="date">
-                    <p>{education.startDate}</p>
-                    <span>-</span>
-                    <p>{education.endDate}</p>
-                  </div>
-                </div>
-              );
-            })}
+                );
+              })}
           </div>
           <h2 className="heading">EXPERIENCE</h2>
           <div>
-            {props.experienceForm.map((experience) => {
-              return (
-                <div className="experience-list" key={uuidv4()}>
-                  <div>
-                    <h3>{experience.companyName}</h3>
-                    <p>{experience.positionTitle}</p>
-                    <p>{experience.location}</p>
-                    <p>{experience.description}</p>
-                  </div>
+            {props.experienceForm
+              .filter((experience) => experience.companyName !== "")
+              .map((experience) => {
+                return (
+                  <div className="experience-list" key={experience.id}>
+                    <div>
+                      <h3>{experience.companyName}</h3>
+                      <p>{experience.positionTitle}</p>
+                      <p>{experience.location}</p>
+                      <p>{experience.description}</p>
+                    </div>
 
-                  <div className="date">
-                    <p>{experience.startDate}</p>
-                    <span>-</span>
-                    <p>{experience.endDate}</p>
+                    <div className="date">
+                      <p>{experience.startDate}</p>
+                      <span>-</span>
+                      <p>{experience.endDate}</p>
+                    </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
           </div>
         </section>
       </main>
