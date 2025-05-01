@@ -42,21 +42,21 @@ export default function App() {
   const [preview, setPreview] = React.useState(null);
   const educationistElements = educationFormData.map((items) => {
     return (
-      <div className="education-list" key={uuidv4()}>
+      <div className="list" key={uuidv4()}>
         <h3>{items.schoolName}</h3>
       </div>
     );
   });
   const experienceListElements = experienceFormData.map((items) => {
     return (
-      <div className="education-list" key={uuidv4()}>
+      <div className="list" key={uuidv4()}>
         <h3>{items.companyName}</h3>
       </div>
     );
   });
   const skillListElements = skillFormData.map((items) => {
     return (
-      <div className="education-list" key={uuidv4()}>
+      <div className="list" key={uuidv4()}>
         <h3>{items.skillName}</h3>
       </div>
     );
@@ -125,13 +125,13 @@ export default function App() {
       setPreview(URL.createObjectURL(file)); // show preview
     }
   };
-  console.log(image);
   return (
     <>
       <main className="app">
         <section className="form-section">
           <PersonalDetailForm handelFormChange={handelFormChange} />
           <input
+            className="print-btn"
             type="file"
             accept="image/*"
             onChange={handleImageChange}
@@ -154,7 +154,9 @@ export default function App() {
             listItems={experienceListElements}
             name="Experience"
           />
-          <button onClick={() => window.print()}>Print / Save as PDF</button>
+          <button className="print-btn" onClick={() => window.print()}>
+            Print / Save as PDF
+          </button>
         </section>
 
         <CvPreview
