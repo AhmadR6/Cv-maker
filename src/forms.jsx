@@ -15,7 +15,7 @@ function EducationForm(props) {
         <label htmlFor="endDate">End Date</label>
         <input type="date" name="endDate" />
       </div>
-      <button>Add</button>
+      <button className="add-btn">Add</button>
     </form>
   );
 }
@@ -26,7 +26,7 @@ function SkillForm(props) {
         <label htmlFor="sillName"></label>
         <input type="text" id="skillName" name="skillName" />
       </div>
-      <button>Add</button>
+      <button className="add-btn">Add</button>
     </form>
   );
 }
@@ -58,7 +58,7 @@ function ExperienceForm(props) {
         <label htmlFor="description">Description</label>
         <input type="text" id="description" name="description" />
       </div>
-      <button>Add</button>
+      <button className="add-btn">Add</button>
     </form>
   );
 }
