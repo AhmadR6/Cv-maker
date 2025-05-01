@@ -29,17 +29,21 @@ export default function FormComponets(props) {
       {isListShown && (
         <>
           {props.listItems}
-          <button onClick={AddEntry} className="add-education">
-            {props.name} +
-          </button>
+          <div className="button-container">
+            <button className="add-btn" onClick={AddEntry}>
+              {props.name} +
+            </button>
+          </div>
         </>
       )}
 
       {isFormShown && (
-        <>
+        <div className="form">
           <props.form handleFormSubmition={props.handleFormSubmition} />
-          <button onClick={AddEntry}>Close</button>
-        </>
+          <button className="close-btn" onClick={AddEntry}>
+            Close
+          </button>
+        </div>
       )}
     </>
   );
