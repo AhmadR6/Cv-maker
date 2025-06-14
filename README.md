@@ -1,12 +1,36 @@
-# React + Vite
+# CV Maker 📝
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A sleek, minimalistic web application built with **React** that allows users to create, preview, and download professional CVs with ease.
 
-Currently, two official plugins are available:
+## 🔍 Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The CV Maker is designed to simplify the process of resume creation. Users can fill in personal information, education history, work experience, and skills. The app displays a real-time preview of the CV and enables easy export to PDF for job applications.
 
-## Expanding the ESLint configuration
+## 🚀 Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- 🧑‍💼 Add/edit personal information
+- 🎓 Input educational background
+- 💼 Enter work experience and responsibilities
+- 🛠️ List technical and soft skills
+- 🖨️ Live preview and **print-to-PDF** functionality
+- 💡 Intuitive, user-friendly UI
+
+## 🛠️ Tech Stack
+
+- **React** – Frontend library
+- **React Icons** – Iconography
+- **React-to-Print** – For PDF export
+- **Vite** – Build tool
+
+## 📸 Screenshots
+
+![App Screenshot](https://github.com/AhmadR6/Cv-maker/raw/main/screenshot.png)
+
+
+## 📦 Installation
+
+```bash
+git clone https://github.com/AhmadR6/Cv-maker.git
+cd Cv-maker
+npm install
+npm run dev
